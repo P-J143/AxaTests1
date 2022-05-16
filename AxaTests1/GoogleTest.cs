@@ -20,7 +20,6 @@ namespace AxaTests1
 
 
         [Fact]
-        [Trait("Category", "Smoke")]
         public void ChromeWalkToOffice()
         {
             using (IWebDriver driver = new ChromeDriver())
@@ -55,7 +54,6 @@ namespace AxaTests1
             }
         }
         [Fact]
-        [Trait("Category", "Smoke")]
         public void ChromeRideToOffice()
         {
             using (IWebDriver driver = new ChromeDriver())
@@ -91,7 +89,6 @@ namespace AxaTests1
         }
 
         [Fact]
-        [Trait("Category", "Smoke")]
         public void ChromeWalkFromOffice()
         {
             using (IWebDriver driver = new ChromeDriver())
@@ -126,7 +123,6 @@ namespace AxaTests1
             }
         }
         [Fact]
-        [Trait("Category", "Smoke")]
         public void ChromeRideFromOffice()
         {
             using (IWebDriver driver = new ChromeDriver())
@@ -161,7 +157,6 @@ namespace AxaTests1
             }
         }
         [Fact]
-        [Trait("Category", "Smoke")]
         public void FirefoxWalkToOffice()
         {
             using (IWebDriver driver = new FirefoxDriver())
@@ -196,7 +191,6 @@ namespace AxaTests1
             }
         }
         [Fact]
-        [Trait("Category", "Smoke")]
         public void FirefoxRideToOffice()
         {
             using (IWebDriver driver = new FirefoxDriver())
@@ -232,7 +226,7 @@ namespace AxaTests1
         }
 
         [Fact]
-        [Trait("Category", "Smoke")]
+
         public void FirefoxWalkFromOffice()
         {
             using (IWebDriver driver = new FirefoxDriver())
@@ -267,7 +261,6 @@ namespace AxaTests1
             }
         }
         [Fact]
-        [Trait("Category", "Smoke")]
         public void FirefoxRideFromOffice()
         {
             using (IWebDriver driver = new FirefoxDriver())

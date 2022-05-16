@@ -19,7 +19,6 @@ namespace AxaTests1
 
 
         [Fact]
-        [Trait("Category", "Smoke")]
         public void ChromeTestIfLuke()
         {
 
@@ -44,7 +43,6 @@ namespace AxaTests1
         }
 
         [Fact]
-        [Trait("Category", "Smoke")]
         public void FirefoxTestIfLuke()
         {
 
