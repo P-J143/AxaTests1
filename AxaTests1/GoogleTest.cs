@@ -5,6 +5,9 @@ using System;
 using SeleniumExtras.WaitHelpers;
 using System.Linq;
 using OpenQA.Selenium.Chrome;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
 
 namespace AxaTests1
 {
@@ -22,6 +25,8 @@ namespace AxaTests1
         {
             using (IWebDriver driver = new ChromeDriver())
             {
+                new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+
                 driver.Navigate().GoToUrl(HomeUrl);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
