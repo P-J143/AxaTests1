@@ -26,6 +26,7 @@ namespace AxaTests1
             using (IWebDriver driver = new ChromeDriver())
             {
                 new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+                driver.Manage().Window.Maximize();
 
                 driver.Navigate().GoToUrl(HomeUrl);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);

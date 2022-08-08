@@ -27,10 +27,12 @@ namespace AxaTests1
             using (IWebDriver driver = new ChromeDriver())
             {
                 new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+                driver.Manage().Window.Maximize();
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 driver.Navigate().GoToUrl(HomeUrl);
                 Assert.Equal(HomeTitle, driver.Title);
                 Assert.Equal(HomeUrl, driver.Url);
+
                 driver.FindElement(By.ClassName("form-control")).Clear(); //clear the text box
                 driver.FindElement(By.ClassName("form-control")).SendKeys("people/1");
                 Assert.Contains(LukeName, driver.FindElement(By.ClassName("well")).Text); // confirm that test is looking at Luke Skywalker
