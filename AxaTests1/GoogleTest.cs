@@ -4,14 +4,10 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using SeleniumExtras.WaitHelpers;
 using System.Linq;
-using OpenQA.Selenium.Chrome;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
+
 
 namespace AxaTests1
 {
-
     public class GoogleTest
     {
         private const string HomeUrl = "https://www.google.pl/maps/";
@@ -20,18 +16,18 @@ namespace AxaTests1
         private const double Distance = 30;
         private const int BicycleTime = 15;
 
-        [Fact]
-        public void OfficeJourney()
+        [Theory]
+        [InlineData(BrowserType.Chrome)]
+        [InlineData(BrowserType.Firefox)]
+        public void OfficeJourney(BrowserType browserType)
         {
-            using (IWebDriver driver = new ChromeDriver())
+            using (var driver = WebDriverInfra.Create_Browser(browserType))
             {
-                new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+                var decimalSeparator = ',';
                 driver.Manage().Window.Maximize();
-
                 driver.Navigate().GoToUrl(HomeUrl);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-                var decimalSeparator = ',';
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));                
 
                 // Decline cookies
                 var cookiesbutton1 = driver.FindElements(By.CssSelector(".VfPpkd-vQzf8d"));
@@ -97,8 +93,8 @@ namespace AxaTests1
                 Double.TryParse(ResultBicycleDistanceToOffice, out double NumBicycleDistanceToOffice);
                 Assert.True(BicycleTime > NumBicycleTimeToOffice);
                 Assert.True(Distance > NumBicycleDistanceToOffice);
-            }          
-                       
+            }
+
         }
 
     }

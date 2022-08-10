@@ -3,10 +3,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using SeleniumExtras.WaitHelpers;
-using OpenQA.Selenium.Chrome;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
 
 namespace AxaTests1
 {
@@ -19,14 +15,14 @@ namespace AxaTests1
         private const string LukeHomeworld = "Tatooine";
         private const string Planet1 = "https://swapi.dev/api/planets/1/";
 
-
-
-        [Fact]
-        public void TestIfLuke()
+        [Theory]
+        [InlineData(BrowserType.Chrome)]
+        [InlineData(BrowserType.Firefox)]
+        public void TestIfLuke(BrowserType browserType)
         {
-            using (IWebDriver driver = new ChromeDriver())
+            using (var driver = WebDriverInfra.Create_Browser(browserType))
             {
-                new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+                
                 driver.Manage().Window.Maximize();
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 driver.Navigate().GoToUrl(HomeUrl);
@@ -48,6 +44,6 @@ namespace AxaTests1
             }
 
         }
-    }
 
+    }
 }
