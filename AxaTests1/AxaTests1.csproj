@@ -132,7 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Browser.cs" />
     <Compile Include="GoogleTest.cs" />
     <Compile Include="SwapiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

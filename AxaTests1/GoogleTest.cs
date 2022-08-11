@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using SeleniumExtras.WaitHelpers;
 using System.Linq;
-
+using System.Threading;
 
 namespace AxaTests1
 {
@@ -26,8 +26,12 @@ namespace AxaTests1
                 var decimalSeparator = ',';
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl(HomeUrl);
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));                
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15))
+                {
+                    PollingInterval = TimeSpan.FromSeconds(5),
+                };
+
 
                 // Decline cookies
                 var cookiesbutton1 = driver.FindElements(By.CssSelector(".VfPpkd-vQzf8d"));
@@ -59,6 +63,7 @@ namespace AxaTests1
 
                 // Check the on foot route FROM the office 
                 driver.FindElement(By.CssSelector(".PLEQOe.reverse")).Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".Fk3sm.fontHeadlineSmall")));
                 var TextWalkTimeFromOffice = driver.FindElement(By.CssSelector(".Fk3sm.fontHeadlineSmall")).Text;
                 var TextWalkDistanceFromOffice = driver.FindElement(By.CssSelector(".ivN21e.tUEI8e.fontBodyMedium")).Text;
 
@@ -72,6 +77,7 @@ namespace AxaTests1
                 // Check the cycling route FROM the office
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("[aria-label='Na rowerze']")));
                 driver.FindElement(By.CssSelector("[aria-label='Na rowerze']")).Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".Fk3sm.fontHeadlineSmall")));
                 var TextBicycleTimeFromOffice = driver.FindElement(By.CssSelector(".Fk3sm.fontHeadlineSmall")).Text;
                 var TextBicycleDistanceFromOffice = driver.FindElement(By.CssSelector(".ivN21e.tUEI8e.fontBodyMedium")).Text;
 
@@ -84,6 +90,7 @@ namespace AxaTests1
 
                 // Check the cycling route TO the office
                 driver.FindElement(By.CssSelector(".PLEQOe.reverse")).Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".Fk3sm.fontHeadlineSmall")));
                 var TextBicycleTimeToOffice = driver.FindElement(By.CssSelector(".Fk3sm.fontHeadlineSmall")).Text;
                 var TextBicycleDistanceToOffice = driver.FindElement(By.CssSelector(".ivN21e.tUEI8e.fontBodyMedium")).Text;
 

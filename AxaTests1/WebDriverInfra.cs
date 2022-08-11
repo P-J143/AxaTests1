@@ -5,6 +5,12 @@ using OpenQA.Selenium.Firefox;
 
 namespace AxaTests1
 {
+    public enum BrowserType
+    {
+        NotSet,
+        Chrome,
+        Firefox,
+    }
     internal static class WebDriverInfra
     {
         public static IWebDriver Create_Browser(BrowserType browserType)
